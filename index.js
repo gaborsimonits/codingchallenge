@@ -10,18 +10,18 @@ const groupedByBrand = (data) => {
 
 	//_____Grouping beers by brand
 	//__________with Reduce
-	let grouped = data.reduce((total, beer) => {
-		total[beer.brand] = total[beer.brand] || [];
-		let beerObject = {
-			brand: beer.brand,
-			beers: [],
-		};
-		total[beer.brand].push(beer);
-		return total;
-	}, Object.create({}));
+	// let grouped = data.reduce((total, beer) => {
+	// 	total[beer.brand] = total[beer.brand] || [];
+	// 	let beerObject = {
+	// 		brand: beer.brand,
+	// 		beers: [],
+	// 	};
+	// 	total[beer.brand].push(beer);
+	// 	return total;
+	// }, Object.create({}));
 
 	//__________with Lodash
-	// const grouped = _.groupBy(data, (beers) => beers.brand);
+	const grouped = _.groupBy(data, (beers) => beers.brand);
 
 	//_____beerBrandsInSeparateArray
 	const beerBrandsArray = [];
@@ -150,43 +150,43 @@ console.log(filterByIngredient(data, "barley"));
 
 console.log("5. Sort by remaining ingredient ratio (water)");
 
-// const sortByTheMostWateredRatio = (data) => {
-// 	let resultArrayToSort = [];
+const sortByTheMostWateredRatio = (data) => {
+	let resultArrayToSort = [];
 
-// 	for (let beer of data) {
-// 		const { name, brand, type, price, alcohol, ...beerObject } = beer;
-// 		// https://stackoverflow.com/questions/55468218/how-to-sum-string-value-in-lodash-by-particular-column
-// 		let sumOfWaterRatios =
-// 			1 - _.sumBy(beerObject.ingredients, (item) => Number(item.ratio));
+	for (let beer of data) {
+		const { name, brand, type, price, alcohol, ...beerObject } = beer;
+		// https://stackoverflow.com/questions/55468218/how-to-sum-string-value-in-lodash-by-particular-column
+		let sumOfWaterRatios =
+			1 - _.sumBy(beerObject.ingredients, (item) => Number(item.ratio));
 
-// 		let pair = { water_ratio: sumOfWaterRatios };
-// 		let updatedBeerObject = { ...pair, ...beerObject };
+		let pair = { water_ratio: sumOfWaterRatios };
+		let updatedBeerObject = { ...pair, ...beerObject };
 
-// 		resultArrayToSort.push(updatedBeerObject);
-// 	}
+		resultArrayToSort.push(updatedBeerObject);
+	}
 
-// 	const resultArrayInAlphabeticalOrderArray = resultArrayToSort.sort((a, b) => {
-// 		let textA = a.id.toUpperCase();
-// 		let textB = b.id.toUpperCase();
-// 		return textA < textB ? -1 : textA > textB ? 1 : 0;
-// 	});
+	const resultArrayInAlphabeticalOrderArray = resultArrayToSort.sort((a, b) => {
+		let textA = a.id.toUpperCase();
+		let textB = b.id.toUpperCase();
+		return textA < textB ? -1 : textA > textB ? 1 : 0;
+	});
 
-// 	const beersByDescendingWaterRatio = resultArrayInAlphabeticalOrderArray.sort(
-// 		function (a, b) {
-// 			return b.water_ratio - a.water_ratio;
-// 		}
-// 	);
+	const beersByDescendingWaterRatio = resultArrayInAlphabeticalOrderArray.sort(
+		function (a, b) {
+			return b.water_ratio - a.water_ratio;
+		}
+	);
 
-// 	let result = [];
-// 	for (let beer of beersByDescendingWaterRatio) {
-// 		result.push(beer.id);
-// 	}
+	let result = [];
+	for (let beer of beersByDescendingWaterRatio) {
+		result.push(beer.id);
+	}
 
-// 	return JSON.stringify(result, null, "\t");
-// };
+	return JSON.stringify(result, null, "\t");
+};
 
 // sortByTheMostWateredRatio(data)
-// console.log(sortByTheMostWateredRatio(data));
+console.log(sortByTheMostWateredRatio(data));
 // fs.writeFileSync("./5_result", sortByTheMostWateredRatio(data));
 
 console.log("6. Map beers to rounded price");
