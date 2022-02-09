@@ -1,0 +1,52 @@
+[
+	{
+		"brand": "Coding Challenge Brewery",
+		"beers": [
+			"ccw-1",
+			"ccb-1",
+			"ccw-2",
+			"ccpa-1",
+			"ccc-1"
+		]
+	},
+	{
+		"brand": "Share",
+		"beers": [
+			"sw-1",
+			"spa-1",
+			"sb-1",
+			"sc-1",
+			"sw-2"
+		]
+	},
+	{
+		"brand": "Beer Sans Brewery",
+		"beers": [
+			"bspa-1",
+			"bsc-1",
+			"bsw-1",
+			"bsb-1",
+			"bsw-2"
+		]
+	},
+	{
+		"brand": "Level Up Brewery",
+		"beers": [
+			"lupa-1",
+			"luw-1",
+			"luw-2",
+			"lub-1",
+			"luc-1"
+		]
+	},
+	{
+		"brand": "Coding Sans Brewery",
+		"beers": [
+			"csb-1",
+			"csw-1",
+			"csw-2",
+			"csc-1",
+			"cspa-1"
+		]
+	}
+]
