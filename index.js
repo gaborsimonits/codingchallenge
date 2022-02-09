@@ -90,22 +90,24 @@ const getTheCheapestBrand = (data) => {
 		.filter((beer, i, a) => a.indexOf(beer) === i);
 
 	const avgPriceInArrayPerBrand = [];
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < filteredBrandNames.length; i++) {
 		const brewery = data.filter((beer) => beer.brand === filteredBrandNames[i]);
 		const avgPerBrewery =
 			brewery.reduce((total, beer) => total + parseInt(beer.price), 0) /
 			brewery.length;
 		avgPriceInArrayPerBrand.push(avgPerBrewery);
 	}
+	console.log(avgPriceInArrayPerBrand);
 
 	const resultArrayToSort = [];
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < avgPriceInArrayPerBrand.length; i++) {
 		let beerBrandsObjWithAveragePrices = {
 			name: filteredBrandNames[i],
 			avgPrice: avgPriceInArrayPerBrand[i],
 		};
 		resultArrayToSort.push(beerBrandsObjWithAveragePrices);
 	}
+	console.log(resultArrayToSort);
 
 	const beerObjectsInDescendingOrder = resultArrayToSort.sort(function (a, b) {
 		return a.avgPrice - b.avgPrice;
@@ -135,12 +137,14 @@ const filterByIngredient = (data, ingredientToCheck) => {
 	for (let i = 0; i < data.length; i++) {
 		const beerToCheck = data[i].ingredients.some(
 			(ingredient) =>
-				ingredient.name === ingredientToCheck && ingredient.ratio == 0
+				ingredient.name === ingredientToCheck &&
+				parseInt(ingredient.ratio) === 0
 		);
 		if (beerToCheck === true) {
 			result.push(data[i].id);
 		}
 	}
+	console.log(result);
 	return JSON.stringify(result, null, "\t");
 };
 
