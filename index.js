@@ -97,7 +97,6 @@ const getTheCheapestBrand = (data) => {
 			brewery.length;
 		avgPriceInArrayPerBrand.push(avgPerBrewery);
 	}
-	console.log(avgPriceInArrayPerBrand);
 
 	const resultArrayToSort = [];
 	for (let i = 0; i < avgPriceInArrayPerBrand.length; i++) {
@@ -107,7 +106,6 @@ const getTheCheapestBrand = (data) => {
 		};
 		resultArrayToSort.push(beerBrandsObjWithAveragePrices);
 	}
-	console.log(resultArrayToSort);
 
 	const beerObjectsInDescendingOrder = resultArrayToSort.sort(function (a, b) {
 		return a.avgPrice - b.avgPrice;
@@ -144,7 +142,6 @@ const filterByIngredient = (data, ingredientToCheck) => {
 			result.push(data[i].id);
 		}
 	}
-	console.log(result);
 	return JSON.stringify(result, null, "\t");
 };
 
